@@ -10,4 +10,18 @@ h1 {
 p {
   font-family: sans-serif;
   font-size: 20px;
+  opacity: 0; /* Set initial opacity to 0 for the fade-in effect */
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out forwards; /* Add 'forwards' to keep the final state after animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
