@@ -1,21 +1,24 @@
-// Konami Code
-const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-let konamiCodeIndex = 0;
+// Fade-in Effect
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.container');
+  container.style.opacity = '0';
 
-function konamiCodeHandler(event) {
-  const key = event.code;
+  function fadeIn() {
+    let opacity = 0;
+    const duration = 1500; // Adjust the duration in milliseconds
+    const interval = 16; // Approximate interval for smoother animation
 
-  if (key === konamiCode[konamiCodeIndex]) {
-    konamiCodeIndex++;
+    function animate() {
+      opacity += interval / duration;
+      container.style.opacity = Math.min(opacity, 1);
 
-    if (konamiCodeIndex === konamiCode.length) {
-      // Konami Code entered successfully, display the game (you can customize this part)
-      alert('Cheat code activated! Game unlocked!');
-      konamiCodeIndex = 0; // Reset the code index for potential future use
+      if (opacity < 1) {
+        requestAnimationFrame(animate);
+      }
     }
-  } else {
-    konamiCodeIndex = 0; // Reset the code index if the entered key is incorrect
-  }
-}
 
-document.addEventListener('keydown', konamiCodeHandler);
+    animate();
+  }
+
+  fadeIn();
+});
